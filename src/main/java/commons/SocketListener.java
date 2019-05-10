@@ -87,6 +87,7 @@ public abstract class SocketListener extends Thread {
 
     /**
      * 发送字符串
+     *
      * @param words 待发送字符串
      */
     private synchronized void send(String words) {
@@ -101,7 +102,8 @@ public abstract class SocketListener extends Thread {
 
     /**
      * 封装消息并发送至socket server
-     * @param to 接收消息对象
+     *
+     * @param to      接收消息对象
      * @param message 消息内容体
      */
     private void sendMessage(String to, Object message) {
@@ -113,6 +115,7 @@ public abstract class SocketListener extends Thread {
 
     /**
      * 默认发送消息给Agent
+     *
      * @param message 消息内容体
      */
     protected void sendMessage(Object message) {
@@ -121,6 +124,7 @@ public abstract class SocketListener extends Thread {
 
     /**
      * 从socket server 接收消息
+     *
      * @return 接收到的字符串，失败返回Null
      */
     private synchronized String receive() {
@@ -136,6 +140,7 @@ public abstract class SocketListener extends Thread {
 
     /**
      * 处理接收到的消息字符串
+     *
      * @param msg
      */
     protected abstract void messageHandler(String msg);

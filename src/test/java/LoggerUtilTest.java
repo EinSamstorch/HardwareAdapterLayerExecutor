@@ -1,5 +1,5 @@
 import commons.LoggerUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 测试logger.

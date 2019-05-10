@@ -23,11 +23,24 @@
             <version>1.2.17</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13-beta-2</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>SocketServer</groupId>
+            <artifactId>1.1</artifactId>
+            <systemPath>${project.basedir}/src/test/lib/SocketServer.jar</systemPath>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
