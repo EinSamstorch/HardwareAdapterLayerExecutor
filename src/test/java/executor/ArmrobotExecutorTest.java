@@ -46,9 +46,9 @@ public class ArmrobotExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 }

@@ -47,10 +47,10 @@ public class LatheExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo, String.valueOf(35.0));
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo, String.valueOf(35.0));
     }
 
     @Test
@@ -72,10 +72,10 @@ public class LatheExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 
     @Test
@@ -89,10 +89,10 @@ public class LatheExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 
     @Test
@@ -106,9 +106,9 @@ public class LatheExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 }

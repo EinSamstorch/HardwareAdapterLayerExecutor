@@ -19,7 +19,8 @@ public abstract class AbstractExecutor extends SocketListener {
     private static final String FIELD_TASK_NO = "task_no";
     private static final String FIELD_CMD = "cmd";
     private static final String FIELD_EXTRA = "extra";
-    private static final String FIELD_RESULT = "result";
+    private static final String FIELD_CMD_RESULT = "cmd_result";
+    private static final String FIELD_ACTION_RESULT = "action_result";
     private static final String FIELD_RESULT_SUCCESS = "success";
     private static final String FIELD_RESULT_FAILED = "failed";
 
@@ -128,7 +129,7 @@ public abstract class AbstractExecutor extends SocketListener {
         }
 
         reply.put(FIELD_TASK_NO, taskNo);
-        reply.put(FIELD_RESULT, FIELD_RESULT_SUCCESS);
+        reply.put(FIELD_CMD_RESULT, FIELD_RESULT_SUCCESS);
         reply.put(FIELD_EXTRA, extra);
         sendMessage(reply);
     }
@@ -148,7 +149,7 @@ public abstract class AbstractExecutor extends SocketListener {
         }
 
         reply.put(FIELD_TASK_NO, taskNo);
-        reply.put(FIELD_RESULT, FIELD_RESULT_FAILED);
+        reply.put(FIELD_CMD_RESULT, FIELD_RESULT_FAILED);
         reply.put(FIELD_EXTRA, extra);
         sendMessage(reply);
     }
@@ -168,7 +169,7 @@ public abstract class AbstractExecutor extends SocketListener {
         }
 
         reply.put(FIELD_TASK_NO, taskNo);
-        reply.put(FIELD_RESULT, FIELD_RESULT_SUCCESS);
+        reply.put(FIELD_ACTION_RESULT, FIELD_RESULT_SUCCESS);
         reply.put(FIELD_EXTRA, extra);
         sendMessage(reply);
     }
@@ -188,7 +189,7 @@ public abstract class AbstractExecutor extends SocketListener {
         }
 
         reply.put(FIELD_TASK_NO, taskNo);
-        reply.put(FIELD_RESULT, FIELD_RESULT_FAILED);
+        reply.put(FIELD_ACTION_RESULT, FIELD_RESULT_FAILED);
         reply.put(FIELD_EXTRA, extra);
         sendMessage(reply);
     }

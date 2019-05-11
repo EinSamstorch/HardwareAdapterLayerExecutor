@@ -14,29 +14,45 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class ResponseCheck {
-    public static void checkResponseSuccess(String actionResponse, int taskNo) {
-        check(actionResponse, taskNo, "success", "");
-    }
-
-    public static void checkResponseSuccess(String actionResponse, int taskNo, String extra) {
-        check(actionResponse, taskNo, "success", extra);
-    }
-
-    public static void checkResponseFailed(String actionResponse, int taskNo) {
-        check(actionResponse, taskNo, "failed", null);
-    }
-
-    public static void checkResponseFailed(String actionResponse, int taskNo, String extra) {
-        check(actionResponse, taskNo, "failed", extra);
-    }
-
-    private static void check(String response, int taskNo, String result, String extra) {
+    private static void check(String response, int taskNo, String resultName, String result, String extra) {
         JSONObject jsonActionResponse = JSONObject.parseObject(response);
         assertEquals(jsonActionResponse.getIntValue("task_no"), taskNo);
-        assertEquals(jsonActionResponse.getString("result"), result);
+        assertEquals(jsonActionResponse.getString(resultName), result);
 
         if (null != extra) {
             assertEquals(jsonActionResponse.getString("extra"), extra);
         }
+    }
+
+    public static void checkActionResponseSuccess(String actionResponse, int taskNo) {
+        check(actionResponse, taskNo, "action_result", "success", "");
+    }
+
+    public static void checkActionResponseSuccess(String actionResponse, int taskNo, String extra) {
+        check(actionResponse, taskNo, "action_result", "success", extra);
+    }
+
+    public static void checkActionResponseFailed(String actionResponse, int taskNo) {
+        check(actionResponse, taskNo, "action_result", "failed", null);
+    }
+
+    public static void checkActionResponseFailed(String actionResponse, int taskNo, String extra) {
+        check(actionResponse, taskNo, "action_result", "failed", extra);
+    }
+
+    public static void checkCmdResponseSuccess(String actionResponse, int taskNo) {
+        check(actionResponse, taskNo, "cmd_result", "success", "");
+    }
+
+    public static void checkCmdResponseSuccess(String actionResponse, int taskNo, String extra) {
+        check(actionResponse, taskNo, "cmd_result", "success", extra);
+    }
+
+    public static void checkCmdResponseFailed(String actionResponse, int taskNo) {
+        check(actionResponse, taskNo, "cmd_result", "failed", null);
+    }
+
+    public static void checkCmdResponseFailed(String actionResponse, int taskNo, String extra) {
+        check(actionResponse, taskNo, "cmd_result", "failed", extra);
     }
 }

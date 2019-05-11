@@ -46,10 +46,10 @@ class AgvExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 
     @Test
@@ -68,10 +68,10 @@ class AgvExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 
     @Test
@@ -88,10 +88,10 @@ class AgvExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseFailed(actionResponse, taskNo, "No action found.");
+        ResponseCheck.checkActionResponseFailed(actionResponse, taskNo, "No action found.");
     }
 
     @Test
@@ -110,10 +110,10 @@ class AgvExecutorTest {
         sc.sendMessage(message);
 
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseSuccess(cmdParseResponse, taskNo);
+        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseFailed(actionResponse, taskNo, "Map location can not be zero or negative.");
+        ResponseCheck.checkActionResponseFailed(actionResponse, taskNo, "Map location can not be zero or negative.");
     }
 
     @Test
@@ -125,14 +125,14 @@ class AgvExecutorTest {
 
         sc.sendMessage(message);
         String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseFailed(cmdParseResponse, taskNo, "Missing message part.");
+        ResponseCheck.checkCmdResponseFailed(cmdParseResponse, taskNo, "Missing message part.");
 
 
         // test miss task_no
         message = new JSONObject();
         sc.sendMessage(message);
         cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkResponseFailed(cmdParseResponse, 0, "Missing message part.");
+        ResponseCheck.checkCmdResponseFailed(cmdParseResponse, 0, "Missing message part.");
 
     }
 }
