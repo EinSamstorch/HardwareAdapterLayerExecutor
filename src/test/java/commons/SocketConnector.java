@@ -1,5 +1,6 @@
+package commons;
+
 import com.alibaba.fastjson.JSONObject;
-import commons.LoggerUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;

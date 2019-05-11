@@ -1,4 +1,9 @@
+package executor;
+
 import com.alibaba.fastjson.JSONObject;
+import commons.ResponseCheck;
+import commons.SocketConnector;
+import commons.StartSocketServer;
 import fake.WarehouseExecutor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,21 +19,14 @@ import org.junit.jupiter.api.Test;
 public class WarehouseExecutorTest {
     private static SocketConnector sc;
 
-    static void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @BeforeAll
     static void startServer() {
         new StartSocketServer();
-        new WarehouseExecutor().start();
         sc = new SocketConnector();
         sc.init();
-        AgvExecutorTest.sleep(1000);
+
+        new WarehouseExecutor().start();
+        StartSocketServer.sleep(1000);
     }
 
     @Test

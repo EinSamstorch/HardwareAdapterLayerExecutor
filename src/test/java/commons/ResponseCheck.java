@@ -1,3 +1,5 @@
+package commons;
+
 import com.alibaba.fastjson.JSONObject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,20 +13,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 
-class ResponseCheck {
-    static void checkResponseSuccess(String actionResponse, int taskNo) {
+public class ResponseCheck {
+    public static void checkResponseSuccess(String actionResponse, int taskNo) {
         check(actionResponse, taskNo, "success", "");
     }
 
-    static void checkResponseSuccess(String actionResponse, int taskNo, String extra) {
+    public static void checkResponseSuccess(String actionResponse, int taskNo, String extra) {
         check(actionResponse, taskNo, "success", extra);
     }
 
-    static void checkResponseFailed(String actionResponse, int taskNo) {
+    public static void checkResponseFailed(String actionResponse, int taskNo) {
         check(actionResponse, taskNo, "failed", null);
     }
 
-    static void checkResponseFailed(String actionResponse, int taskNo, String extra) {
+    public static void checkResponseFailed(String actionResponse, int taskNo, String extra) {
         check(actionResponse, taskNo, "failed", extra);
     }
 

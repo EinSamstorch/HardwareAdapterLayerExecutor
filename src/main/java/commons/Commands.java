@@ -120,4 +120,66 @@ public class Commands {
         LoggerUtil.machine.info(String.format("Move item from %d to %d.", from, to));
         return true;
     }
+
+    public static boolean latheProcess(String extra) {
+        JSONObject workpieceInfo = JsonTool.parseObject(extra);
+        int processStep = workpieceInfo.getIntValue("processStep");
+        if (processStep <= 0) {
+            throw new IllegalArgumentException("Process step wrong.");
+        }
+        sleep(20000);
+        LoggerUtil.machine.info(String.format("Process step: %d finished.", processStep));
+        return true;
+    }
+
+    public static boolean grabItem() {
+        sleep(2000);
+        LoggerUtil.machine.info("Grab item successful.");
+        return true;
+    }
+
+    public static boolean releaseItem() {
+        sleep(2000);
+        LoggerUtil.machine.info("Release item successful.");
+        return true;
+    }
+
+    public static boolean armMoveItem(String extra) {
+        JSONObject jsonExtra = JsonTool.parseObject(extra);
+        String from = jsonExtra.getString("from");
+        String to = jsonExtra.getString("to");
+        String goodsid = jsonExtra.getString("goodsid");
+        int step = jsonExtra.getIntValue("step");
+        boolean argueIllegal = null == from
+                || null == to
+                || null == goodsid;
+        if (argueIllegal) {
+            throw new IllegalArgumentException("Missing Argues.");
+        }
+        sleep(5000);
+        if (step != 0) {
+            LoggerUtil.machine.info(String.format("Move item from %s to %s, goodsid: %s, step: %d.",
+                    from,
+                    to,
+                    goodsid,
+                    step));
+        } else {
+            LoggerUtil.machine.info(String.format("Move item from %s to %s, goodsid: %s.",
+                    from,
+                    to,
+                    goodsid));
+        }
+        return true;
+    }
+
+    public static boolean check(String extra) {
+        JSONObject jsonExtra = JsonTool.parseObject(extra);
+        String goodsid = jsonExtra.getString("goodsid");
+        if (null == goodsid) {
+            throw new IllegalArgumentException("Goodsid is null");
+        }
+        sleep(5000);
+        LoggerUtil.machine.info(String.format("Check finished, goodsid: %s", goodsid));
+        return true;
+    }
 }

@@ -1,4 +1,5 @@
-import commons.LoggerUtil;
+package commons;
+
 import org.junit.jupiter.api.Test;
 
 /**

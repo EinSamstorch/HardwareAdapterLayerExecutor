@@ -18,3 +18,5 @@ target
 logs/*
 
 HardwareAdapterLayerExecutor\.iml
+
+src/test/lib/logs/

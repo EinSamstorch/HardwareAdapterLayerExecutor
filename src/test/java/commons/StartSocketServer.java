@@ -1,3 +1,5 @@
+package commons;
+
 import socket.server.GetSocket;
 
 /**
@@ -14,8 +16,16 @@ public class StartSocketServer {
     public StartSocketServer() {
         if (!boot) {
             new GetSocket().start();
-            AgvExecutorTest.sleep(1000);
+            sleep(1000);
             boot = true;
+        }
+    }
+
+    public static void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

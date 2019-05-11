@@ -20,6 +20,10 @@ public class MillExecutor extends AbstractExecutor {
         cmdList = Arrays.asList(CMD_EVALUATE, CMD_PROCESS);
     }
 
+    public static void main(String[] args) {
+        new MillExecutor().start();
+    }
+
     @Override
     protected boolean actionExecute(int taskNo, String cmd, String extra) {
         boolean actionResult = false;

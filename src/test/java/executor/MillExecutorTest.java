@@ -1,4 +1,9 @@
+package executor;
+
 import com.alibaba.fastjson.JSONObject;
+import commons.ResponseCheck;
+import commons.SocketConnector;
+import commons.StartSocketServer;
 import fake.MillExecutor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,21 +19,14 @@ import org.junit.jupiter.api.Test;
 public class MillExecutorTest {
     private static SocketConnector sc;
 
-    static void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @BeforeAll
     static void startServer() {
         new StartSocketServer();
-        new MillExecutor().start();
         sc = new SocketConnector();
         sc.init();
-        MillExecutorTest.sleep(1000);
+
+        new MillExecutor().start();
+        StartSocketServer.sleep(1000);
     }
 
     @Test

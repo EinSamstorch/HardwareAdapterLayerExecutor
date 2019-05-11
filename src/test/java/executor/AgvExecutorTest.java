@@ -1,4 +1,9 @@
+package executor;
+
 import com.alibaba.fastjson.JSONObject;
+import commons.ResponseCheck;
+import commons.SocketConnector;
+import commons.StartSocketServer;
 import fake.AgvExecutor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,22 +20,14 @@ import org.junit.jupiter.api.Test;
 class AgvExecutorTest {
     private static SocketConnector sc;
 
-    static void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @BeforeAll
     static void startServer() {
         new StartSocketServer();
-        new AgvExecutor().start();
         AgvExecutorTest.sc = new SocketConnector();
         sc.init();
-        AgvExecutorTest.sleep(500);
 
+        new AgvExecutor().start();
+        StartSocketServer.sleep(500);
     }
 
     @Test
@@ -138,6 +135,4 @@ class AgvExecutorTest {
         ResponseCheck.checkResponseFailed(cmdParseResponse, 0, "Missing message part.");
 
     }
-
-
 }

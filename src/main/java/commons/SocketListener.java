@@ -74,10 +74,10 @@ public abstract class SocketListener extends Thread {
      */
     private void connect() {
         try {
-            LoggerUtil.machine.debug("Connecting to Socket Server");
+            LoggerUtil.machine.info("Connecting to Socket Server");
             socket = new Socket(host, port);
             if (socket.isConnected()) {
-                LoggerUtil.machine.debug("Connected Successfully");
+                LoggerUtil.machine.info("Connected Successfully");
                 send(selfType.toJSONString());
             }
         } catch (IOException e) {
