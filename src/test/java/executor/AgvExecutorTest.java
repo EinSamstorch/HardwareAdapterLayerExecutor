@@ -31,16 +31,15 @@ class AgvExecutorTest {
     }
 
     @Test
-    void importTest() {
-
+    void moveTest(){
         JSONObject message = new JSONObject();
-        int taskNo = 1;
+        int taskNo = 6;
         message.put("task_no", taskNo);
         message.put("cmd", "move");
 
         JSONObject extra = new JSONObject();
-        extra.put("destination", 15);
-        extra.put("action", "import");
+        extra.put("from", 1);
+        extra.put("to", 10);
         message.put("extra", extra);
 
         sc.sendMessage(message);
@@ -50,48 +49,6 @@ class AgvExecutorTest {
 
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
-    }
-
-    @Test
-    void exportItemTest() {
-
-        JSONObject message = new JSONObject();
-        int taskNo = 2;
-        message.put("task_no", taskNo);
-        message.put("cmd", "move");
-
-        JSONObject extra = new JSONObject();
-        extra.put("destination", 18);
-        extra.put("action", "export");
-        message.put("extra", extra);
-
-        sc.sendMessage(message);
-
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
-        String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
-    }
-
-    @Test
-    void moveWithOutExtraActionTest() {
-        JSONObject message = new JSONObject();
-        int taskNo = 4;
-        message.put("task_no", taskNo);
-        message.put("cmd", "move");
-
-        JSONObject mapLocation = new JSONObject();
-        mapLocation.put("destination", 15);
-        message.put("extra", mapLocation);
-
-        sc.sendMessage(message);
-
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
-        String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkActionResponseFailed(actionResponse, taskNo, "No action found.");
     }
 
     @Test
@@ -102,8 +59,8 @@ class AgvExecutorTest {
         message.put("cmd", "move");
 
         JSONObject extra = new JSONObject();
-        extra.put("destination", -1);
-        extra.put("action", "export");
+        extra.put("from", -1);
+        extra.put("to", -1);
         message.put("extra", extra);
 
 

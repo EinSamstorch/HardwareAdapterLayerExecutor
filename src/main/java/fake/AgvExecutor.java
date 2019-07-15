@@ -16,12 +16,24 @@ import java.util.Objects;
 public class AgvExecutor extends AbstractExecutor {
     private static final String CMD_MOVE = "move";
 
-    public AgvExecutor() {
+    public AgvExecutor(int port) {
+        super(port);
         cmdList = Collections.singletonList(CMD_MOVE);
     }
 
+    public AgvExecutor() {
+        this(5656);
+    }
+
     public static void main(String[] args) {
-        new AgvExecutor().start();
+        if(args.length == 1) {
+            int port = new Integer(args[0]);
+            new AgvExecutor(port).start();
+        } else if(args.length == 0) {
+            new AgvExecutor().start();
+        } else {
+            throw  new IllegalArgumentException("Wrong argument");
+        }
     }
 
     @Override

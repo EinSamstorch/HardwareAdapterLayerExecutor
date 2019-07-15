@@ -16,12 +16,24 @@ import java.util.Objects;
 public class ArmrobotExecutor extends AbstractExecutor {
     private static final String CMD_MOVE_ITEM = "move_item";
 
-    public ArmrobotExecutor() {
+    public ArmrobotExecutor(int port) {
+        super(port);
         cmdList = Collections.singletonList(CMD_MOVE_ITEM);
     }
 
+    public ArmrobotExecutor() {
+        this(5656);
+    }
+
     public static void main(String[] args) {
-        new ArmrobotExecutor().start();
+        if(args.length == 1) {
+            int port = new Integer(args[0]);
+            new ArmrobotExecutor(port).start();
+        } else if(args.length == 0) {
+            new ArmrobotExecutor().start();
+        } else {
+            throw  new IllegalArgumentException("Wrong argument");
+        }
     }
 
     @Override

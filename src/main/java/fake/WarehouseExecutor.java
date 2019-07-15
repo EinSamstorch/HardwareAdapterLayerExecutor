@@ -17,14 +17,26 @@ public class WarehouseExecutor extends AbstractExecutor {
     private static final String CMD_EXPORT_ITEM = "export_item";
     private static final String CMD_MOVE_ITEM = "move_item";
 
-    public WarehouseExecutor() {
+    public WarehouseExecutor(int port) {
+        super(port);
         cmdList = Arrays.asList(CMD_MOVE_ITEM,
                 CMD_IMPORT_ITEM,
                 CMD_EXPORT_ITEM);
     }
 
+    public WarehouseExecutor() {
+        this(5656);
+    }
+
     public static void main(String[] args) {
-        new WarehouseExecutor().start();
+        if(args.length == 1) {
+            int port = new Integer(args[0]);
+            new WarehouseExecutor(port).start();
+        } else if(args.length == 0) {
+            new WarehouseExecutor().start();
+        } else {
+            throw  new IllegalArgumentException("Wrong argument");
+        }
     }
 
     @Override

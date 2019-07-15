@@ -29,6 +29,10 @@ public abstract class AbstractExecutor extends SocketListener {
 
     List<String> cmdList = null;
 
+    public AbstractExecutor(int port) {
+        super(port);
+    }
+
     /**
      * 对接收到的消息进行完整性检查 并处理该消息
      *

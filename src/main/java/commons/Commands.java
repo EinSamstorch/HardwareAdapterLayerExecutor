@@ -32,7 +32,7 @@ public class Commands {
         }
         float totalTime = 0.0f;
         for (Object v : detailSize.values()) {
-            totalTime += Float.parseFloat((String) v);
+            totalTime += Float.parseFloat(v.toString());
         }
 
         if (totalTime <= 0.00000001) {
@@ -88,24 +88,17 @@ public class Commands {
         final String FIELD_ACTION = "action";
         final String ACTION_IMPORT = "import";
         final String ACTION_EXPORT = "export";
-        int location = jsonExtra.getIntValue(FIELD_DESTINATION);
-        if (location <= 0) {
+        final String FIELD_FROM = "from";
+        final String FIELD_TO = "to";
+
+        int from = jsonExtra.getIntValue(FIELD_FROM);
+        int to = jsonExtra.getIntValue(FIELD_TO);
+        if (from <= 0 || to <= 0) {
             throw new IllegalArgumentException("Map location can not be zero or negative.");
         }
 
-        String action = jsonExtra.getString(FIELD_ACTION);
-        if (null == action) {
-            throw new IllegalArgumentException("No action found.");
-        }
-        switch (action) {
-            case ACTION_EXPORT:
-            case ACTION_IMPORT:
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid action.");
-        }
-        sleep(30000);
-        LoggerUtil.machine.info(String.format("Arrive point: %d, and action: %s", location, action));
+        sleep(3000);
+        LoggerUtil.machine.info(String.format("Move item from %d to %d", from, to));
         return true;
     }
 

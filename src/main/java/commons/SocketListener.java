@@ -74,7 +74,7 @@ public abstract class SocketListener extends Thread {
      */
     private void connect() {
         try {
-            LoggerUtil.machine.info("Connecting to Socket Server");
+            LoggerUtil.machine.info("Connecting to Socket Server, port: " +port);
             socket = new Socket(host, port);
             if (socket.isConnected()) {
                 LoggerUtil.machine.info("Connected Successfully");

@@ -18,15 +18,27 @@ public class LatheExecutor extends AbstractExecutor {
     private static final String CMD_EVALUATE = "evaluate";
     private static final String CMD_PROCESS = "process";
 
-    public LatheExecutor() {
+    public LatheExecutor(int port) {
+        super(port);
         cmdList = Arrays.asList(CMD_EVALUATE,
                 CMD_GRAB_ITEM,
                 CMD_PROCESS,
                 CMD_RELEASE_ITEM);
     }
 
+    public LatheExecutor() {
+        this(5656);
+    }
+
     public static void main(String[] args) {
-        new LatheExecutor().start();
+        if(args.length == 1) {
+            int port = new Integer(args[0]);
+            new LatheExecutor(port).start();
+        } else if(args.length == 0) {
+            new LatheExecutor().start();
+        } else {
+            throw  new IllegalArgumentException("Wrong argument");
+        }
     }
 
     @Override

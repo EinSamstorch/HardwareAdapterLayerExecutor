@@ -17,12 +17,24 @@ import java.util.Objects;
 public class VisionExecutor extends AbstractExecutor {
     private static final String CMD_CHECK = "check";
 
-    public VisionExecutor() {
+    public VisionExecutor(int port) {
+        super(port);
         cmdList = Collections.singletonList(CMD_CHECK);
     }
 
+    public VisionExecutor() {
+        this(5656);
+    }
+
     public static void main(String[] args) {
-        new VisionExecutor().start();
+        if(args.length == 1) {
+            int port = new Integer(args[0]);
+            new VisionExecutor(port).start();
+        } else if(args.length == 0) {
+            new VisionExecutor().start();
+        } else {
+            throw  new IllegalArgumentException("Wrong argument");
+        }
     }
 
     @Override

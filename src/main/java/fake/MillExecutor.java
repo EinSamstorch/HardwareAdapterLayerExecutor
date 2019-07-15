@@ -16,12 +16,24 @@ public class MillExecutor extends AbstractExecutor {
     private static final String CMD_EVALUATE = "evaluate";
     private static final String CMD_PROCESS = "process";
 
-    public MillExecutor() {
+    public MillExecutor(int port) {
+        super(port);
         cmdList = Arrays.asList(CMD_EVALUATE, CMD_PROCESS);
     }
 
+    public MillExecutor() {
+        this(5656);
+    }
+
     public static void main(String[] args) {
-        new MillExecutor().start();
+        if(args.length == 1) {
+            int port = new Integer(args[0]);
+            new MillExecutor(port).start();
+        } else if(args.length == 0) {
+            new MillExecutor().start();
+        } else {
+            throw  new IllegalArgumentException("Wrong argument");
+        }
     }
 
     @Override
