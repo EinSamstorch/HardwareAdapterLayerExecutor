@@ -32,7 +32,11 @@ public class Commands {
         }
         float totalTime = 0.0f;
         for (Object v : detailSize.values()) {
-            totalTime += Float.parseFloat(v.toString());
+            try {
+                totalTime += Float.parseFloat(v.toString());
+            } catch (NumberFormatException e) {
+                LoggerUtil.machine.warn(String.format("Value %s not a number.", v));
+            }
         }
 
         if (totalTime <= 0.00000001) {
