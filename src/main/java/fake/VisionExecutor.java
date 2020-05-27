@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 
 public class VisionExecutor extends AbstractExecutor {
-    private static final String CMD_CHECK = "check";
+    private static final String CMD_CHECK = "process";
 
     public VisionExecutor(int port) {
         super(port);

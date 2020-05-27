@@ -34,7 +34,7 @@ public class VisionExecutorTest {
         JSONObject message = new JSONObject();
         int taskNo = 1;
         message.put("task_no", taskNo);
-        message.put("cmd", "check");
+        message.put("cmd", "process");
 
         JSONObject extra = new JSONObject();
         extra.put("goodsid", "001");
