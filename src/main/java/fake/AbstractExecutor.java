@@ -19,12 +19,10 @@ public abstract class AbstractExecutor extends SocketListener {
     private static final String FIELD_TASK_NO = "task_no";
     private static final String FIELD_CMD = "cmd";
     private static final String FIELD_EXTRA = "extra";
-    private static final String FIELD_CMD_RESULT = "cmd_result";
-    private static final String FIELD_ACTION_RESULT = "action_result";
+    private static final String FIELD_ACTION_RESULT = "result";
     private static final String FIELD_RESULT_SUCCESS = "success";
     private static final String FIELD_RESULT_FAILED = "failed";
 
-    Object extraForCmdResult;
     Object extraForActionResult;
 
     List<String> cmdList = null;
@@ -48,8 +46,6 @@ public abstract class AbstractExecutor extends SocketListener {
         } catch (IllegalArgumentException | MissingMessagePartException e) {
             // JSON 解析异常 或者 消息完整性检查异常
             LoggerUtil.machine.warn(e.getMessage());
-            extraForCmdResult = e.getMessage();
-            replyCmdParseFailed(jsonMsg.getIntValue(FIELD_TASK_NO));
             return;
         }
         int taskNo = jsonMsg.getIntValue(FIELD_TASK_NO);
@@ -69,12 +65,9 @@ public abstract class AbstractExecutor extends SocketListener {
     protected void cmdHandler(int taskNo, String cmd, String extra) {
         // 检查是否支持该命令
         if (!cmdList.contains(cmd)) {
-            extraForCmdResult = "Cmd Unknown.";
-            replyCmdParseFailed(taskNo);
+            LoggerUtil.machine.warn("cmd not supported: " + cmd);
             return;
         }
-        // 1. 回复命令解析成功
-        replyCmdParseSuccess(taskNo);
         // 2. 执行该命令
         boolean actionResult = false;
         try {
@@ -116,46 +109,6 @@ public abstract class AbstractExecutor extends SocketListener {
         if (missingMessagePart) {
             throw new MissingMessagePartException("Missing message part.");
         }
-    }
-
-    /**
-     * 回复消息解析成功
-     *
-     * @param taskNo 任务号
-     */
-    protected void replyCmdParseSuccess(int taskNo) {
-        JSONObject reply = new JSONObject();
-
-        Object extra = extraForCmdResult;
-        extraForCmdResult = null;
-        if (null == extra) {
-            extra = "";
-        }
-
-        reply.put(FIELD_TASK_NO, taskNo);
-        reply.put(FIELD_CMD_RESULT, FIELD_RESULT_SUCCESS);
-        reply.put(FIELD_EXTRA, extra);
-        sendMessage(reply);
-    }
-
-    /**
-     * 回复消息解析失败
-     *
-     * @param taskNo 任务号
-     */
-    protected void replyCmdParseFailed(int taskNo) {
-        JSONObject reply = new JSONObject();
-
-        Object extra = extraForCmdResult;
-        extraForCmdResult = null;
-        if (null == extra) {
-            extra = "";
-        }
-
-        reply.put(FIELD_TASK_NO, taskNo);
-        reply.put(FIELD_CMD_RESULT, FIELD_RESULT_FAILED);
-        reply.put(FIELD_EXTRA, extra);
-        sendMessage(reply);
     }
 
     /**

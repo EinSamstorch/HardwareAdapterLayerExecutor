@@ -44,9 +44,6 @@ class AgvExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
@@ -66,30 +63,9 @@ class AgvExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseFailed(actionResponse, taskNo, "Map location can not be zero or negative.");
     }
 
-    @Test
-    void missingMessageTest() {
-        // test miss cmd
-        JSONObject message = new JSONObject();
-        int taskNo = 3;
-        message.put("task_no", taskNo);
-
-        sc.sendMessage(message);
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseFailed(cmdParseResponse, taskNo, "Missing message part.");
-
-
-        // test miss task_no
-        message = new JSONObject();
-        sc.sendMessage(message);
-        cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseFailed(cmdParseResponse, 0, "Missing message part.");
-
-    }
 }

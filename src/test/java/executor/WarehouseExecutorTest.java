@@ -39,9 +39,6 @@ public class WarehouseExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
@@ -56,27 +53,25 @@ public class WarehouseExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 
     @Test
-    void moveItemWithOutExtraArgueTest() {
+    void moveItem() {
         JSONObject message = new JSONObject();
         int taskNo = 1;
+        int itemPos = 10;
+        JSONObject extra = new JSONObject();
+        extra.put("from", itemPos);
+        extra.put("to", 15);
         message.put("task_no", taskNo);
         message.put("cmd", "move_item");
-        message.put("extra", "");
+        message.put("extra", extra);
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
-        ResponseCheck.checkActionResponseFailed(actionResponse, taskNo);
+        ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
 }

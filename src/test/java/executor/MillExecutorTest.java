@@ -46,9 +46,6 @@ public class MillExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo, String.valueOf(35.0));
     }
@@ -69,9 +66,6 @@ public class MillExecutorTest {
         message.put("extra", extra);
 
         sc.sendMessage(message);
-
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);

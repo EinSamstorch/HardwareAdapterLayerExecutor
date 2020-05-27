@@ -46,9 +46,6 @@ public class LatheExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo, String.valueOf(35.0));
     }
@@ -71,9 +68,6 @@ public class LatheExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
@@ -88,9 +82,6 @@ public class LatheExecutorTest {
 
         sc.sendMessage(message);
 
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
-
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);
     }
@@ -104,9 +95,6 @@ public class LatheExecutorTest {
         message.put("extra", "");
 
         sc.sendMessage(message);
-
-        String cmdParseResponse = sc.receiveMessage();
-        ResponseCheck.checkCmdResponseSuccess(cmdParseResponse, taskNo);
 
         String actionResponse = sc.receiveMessage();
         ResponseCheck.checkActionResponseSuccess(actionResponse, taskNo);

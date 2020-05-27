@@ -25,31 +25,23 @@ public class ResponseCheck {
     }
 
     public static void checkActionResponseSuccess(String actionResponse, int taskNo) {
-        check(actionResponse, taskNo, "action_result", "success", "");
+        check(actionResponse, taskNo, "result", "success", "");
     }
 
     public static void checkActionResponseSuccess(String actionResponse, int taskNo, String extra) {
-        check(actionResponse, taskNo, "action_result", "success", extra);
+        check(actionResponse, taskNo, "result", "success", extra);
     }
 
     public static void checkActionResponseFailed(String actionResponse, int taskNo) {
-        check(actionResponse, taskNo, "action_result", "failed", null);
+        check(actionResponse, taskNo, "result", "failed", null);
     }
 
     public static void checkActionResponseFailed(String actionResponse, int taskNo, String extra) {
-        check(actionResponse, taskNo, "action_result", "failed", extra);
+        check(actionResponse, taskNo, "result", "failed", extra);
     }
 
     public static void checkCmdResponseSuccess(String actionResponse, int taskNo) {
         check(actionResponse, taskNo, "cmd_result", "success", "");
-    }
-
-    public static void checkCmdResponseSuccess(String actionResponse, int taskNo, String extra) {
-        check(actionResponse, taskNo, "cmd_result", "success", extra);
-    }
-
-    public static void checkCmdResponseFailed(String actionResponse, int taskNo) {
-        check(actionResponse, taskNo, "cmd_result", "failed", null);
     }
 
     public static void checkCmdResponseFailed(String actionResponse, int taskNo, String extra) {
