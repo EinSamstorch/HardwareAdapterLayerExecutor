@@ -27,7 +27,7 @@ public class MillExecutor extends AbstractExecutor {
 
     public static void main(String[] args) {
         if(args.length == 1) {
-            int port = new Integer(args[0]);
+            int port = Integer.parseInt(args[0]);
             new MillExecutor(port).start();
         } else if(args.length == 0) {
             new MillExecutor().start();
