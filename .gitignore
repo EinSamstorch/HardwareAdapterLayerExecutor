@@ -17,6 +17,6 @@ hs_err_pid*
 target
 logs/*
 
-HardwareAdapterLayerExecutor\.iml
+HardwareAdapterLayerExecutor.iml
 
 src/test/lib/logs/
