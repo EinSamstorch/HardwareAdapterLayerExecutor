@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.edu.nuaa</groupId>
-    <artifactId>HardwareAdapterLayerExcutor</artifactId>
+    <artifactId>HardwareAdapterLayerExecutor</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -15,7 +15,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.54</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
             <groupId>log4j</groupId>
@@ -23,24 +22,18 @@
             <version>1.2.17</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.3.1</version>
+            <groupId>cn.edu.nuaa</groupId>
+            <artifactId>SocketServer</artifactId>
+            <version>1.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>SocketServer</groupId>
-            <artifactId>1.1</artifactId>
-            <systemPath>${project.basedir}/src/test/lib/SocketServer.jar</systemPath>
-            <scope>test</scope>
-        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <version>5.3.2</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -57,6 +50,17 @@
                     <source>8</source>
                     <target>8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

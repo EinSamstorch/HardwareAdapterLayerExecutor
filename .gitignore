@@ -20,3 +20,5 @@ logs/*
 HardwareAdapterLayerExecutor.iml
 
 src/test/lib/logs/
+
+dependency-reduced-pom.xml
