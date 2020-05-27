@@ -13,8 +13,9 @@ import java.util.Arrays;
 
 
 public class BufferExecutor extends AbstractExecutor {
-  private static final String CMD_IMPORT = "import";
-  private static final String CMD_EXPORT = "export";
+
+  private static final String CMD_IMPORT = "import_item";
+  private static final String CMD_EXPORT = "export_item";
 
 
   public BufferExecutor(int port) {
@@ -34,9 +35,8 @@ public class BufferExecutor extends AbstractExecutor {
 
   @Override
   protected boolean actionExecute(int taskNo, String cmd, String extra) {
-    if(CMD_IMPORT.equals(cmd)) {
-      return Commands.importItem();
-    }
-    return Commands.exportItem();
+    boolean in = CMD_IMPORT.equals(cmd);
+    return Commands.imExport(in, extra);
+
   }
 }

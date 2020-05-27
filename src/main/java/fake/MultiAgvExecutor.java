@@ -14,15 +14,15 @@ import java.util.Arrays;
 public class MultiAgvExecutor extends AbstractExecutor {
 
   private static final String CMD_MOVE = "move";
-  private static final String CMD_IMPORT = "import";
-  private static final String CMD_EXPORT = "export";
-  private static final String CMD_GET_POSTION = "get_postion";
+  private static final String CMD_IMPORT = "import_item";
+  private static final String CMD_EXPORT = "export_item";
+  private static final String CMD_GET_POSITION = "get_position";
   private int pos;
 
   public MultiAgvExecutor(int port, int pos) {
     super(port);
     this.pos = pos;
-    cmdList = Arrays.asList(CMD_EXPORT, CMD_IMPORT, CMD_MOVE, CMD_GET_POSTION);
+    cmdList = Arrays.asList(CMD_EXPORT, CMD_IMPORT, CMD_MOVE, CMD_GET_POSITION);
   }
 
   @SuppressWarnings("Duplicates")
@@ -41,7 +41,7 @@ public class MultiAgvExecutor extends AbstractExecutor {
   @Override
   protected boolean actionExecute(int taskNo, String cmd, String extra) {
 
-    if (CMD_GET_POSTION.equals(cmd)) {
+    if (CMD_GET_POSITION.equals(cmd)) {
       extraForActionResult = pos;
       return true;
     }
@@ -50,6 +50,7 @@ public class MultiAgvExecutor extends AbstractExecutor {
     }
     if (CMD_MOVE.equals(cmd)) {
       move(extra);
+      return true;
     }
     return false;
   }

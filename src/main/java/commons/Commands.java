@@ -1,5 +1,6 @@
 package commons;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 /**
@@ -63,20 +64,30 @@ public class Commands {
      * @return
      */
     public static boolean importItem() {
+        return imExport(true);
+    }
+
+    private static boolean imExport(boolean in) {
         sleep(500);
-        LoggerUtil.machine.info("Import item successful");
+        LoggerUtil.machine.info((in ? "Import" : "Export") + " item successful");
         return true;
     }
 
+    public static boolean imExport(boolean in, String extra) {
+        sleep(500);
+        JSONObject json = JSON.parseObject(extra);
+        int bufferNo = json.getIntValue("buffer_no");
+        LoggerUtil.machine
+            .info((in ? "Import" : "Export") + " item successful, Buffer: " + bufferNo);
+        return true;
+    }
     /**
      * 送出货物
      *
      * @return
      */
     public static boolean exportItem() {
-        sleep(500);
-        LoggerUtil.machine.info("Export item successful");
-        return true;
+        return imExport(false);
     }
 
     /**
